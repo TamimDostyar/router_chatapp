@@ -66,5 +66,10 @@ public class AllowPortController {
             return errorResponse.toString();
         }
     }
-    
+    public String deviceInfo() {
+        JSONObject response = new JSONObject();
+        response.put("device_info", "Device info: " + System.getProperty("os.name"));
+        return response.toString();
+    }
+
 }

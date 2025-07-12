@@ -10,6 +10,8 @@ import java.net.UnknownHostException;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.List;
+import java.util.ArrayList;
 import com.example.router.controller.AllowPortController;
 import com.example.router.controller.SignalMessageController;
 
@@ -22,7 +24,10 @@ public class RouterMessageController {
     @GetMapping("/")
     @ResponseBody
     public String root() {
-        return allowPortController.getServerIp();
+        List<String> port_device_info = new ArrayList<>();
+        port_device_info.add(allowPortController.getServerIp());
+        port_device_info.add(allowPortController.deviceInfo());
+        return port_device_info.toString();
     }
     
     @GetMapping("/api/server/home")
