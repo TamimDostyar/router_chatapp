@@ -24,10 +24,10 @@ public class RouterMessageController {
     @GetMapping("/")
     @ResponseBody
     public String root() {
-        List<String> port_device_info = new ArrayList<>();
-        port_device_info.add(allowPortController.getServerIp());
-        port_device_info.add(allowPortController.deviceInfo());
-        return port_device_info.toString();
+        JSONObject response = new JSONObject();
+        response.put("local_ip", allowPortController.getServerIp());
+        response.put("device_info", allowPortController.deviceInfo());
+        return response.toString();
     }
     
     @GetMapping("/api/server/home")

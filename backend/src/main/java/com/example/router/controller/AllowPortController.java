@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 
 @Controller
 public class AllowPortController {
+    @GetMapping("/device-info")
     @ResponseBody
     public String getServerIp() {
         try {
@@ -66,6 +67,9 @@ public class AllowPortController {
             return errorResponse.toString();
         }
     }
+    
+    @GetMapping("/device-name")
+    @ResponseBody
     public String deviceInfo() {
         JSONObject response = new JSONObject();
         response.put("device_info", "Device info: " + System.getProperty("os.name"));
