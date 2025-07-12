@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package com.example.router;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
