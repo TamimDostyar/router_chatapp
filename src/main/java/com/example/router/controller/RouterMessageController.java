@@ -7,10 +7,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.json.JSONObject;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import com.example.router.controller.AllowPortController;
+import com.example.router.controller.SignalMessageController;
 
 @Controller
 public class RouterMessageController {
     JSONObject jsonObject = new JSONObject();
+    AllowPortController allowPortController = new AllowPortController();
+    SignalMessageController signalMessageController = new SignalMessageController();
+
+    @GetMapping("/")
+    @ResponseBody
+    public String root() {
+        return allowPortController.getServerIp();
+    }
+    
     @GetMapping("/api/server/home")
     @ResponseBody
     public String home() {
@@ -36,16 +50,5 @@ public class RouterMessageController {
         response.put("service", "router-message-service");
         response.put("version", "1.0.0");
         return response.toString();
-    }
-
-    @GetMapping("/api/server/ip")
-    @ResponseBody
-    public String getServerIp() {
-        try {
-            InetAddress ip = InetAddress.getLocalHost();
-            return ip.getHostAddress();
-        } catch (UnknownHostException e) {
-            return "Error: " + e.getMessage();
-        }
     }
 } 
